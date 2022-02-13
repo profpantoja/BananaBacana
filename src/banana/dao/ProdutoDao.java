@@ -3,6 +3,7 @@ package banana.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import banana.model.Produto;
@@ -40,6 +41,46 @@ public class ProdutoDao {
 				e2.printStackTrace();
 			}
 		}
+	}
+
+	public Produto BuscarProdutoPorId(int id) {
+		String sql = "SELECT * FROM PRODUTO WHERE idProduto = ?";
+		ResultSet rs = null;
+		Connection conn = null;
+		PreparedStatement pStatement = null;
+		Produto produto = null;
+		try {
+			conn = new MySqlConnection().getConnection();
+			pStatement = conn.prepareStatement(sql);
+			pStatement.setInt(1, id);
+			rs = pStatement.executeQuery();
+			if (rs != null && rs.next()) {
+				produto = new Produto();
+				produto.setIdProduto(rs.getInt("idProduto"));
+				produto.setDescricao(rs.getString("descricao"));
+				produto.setQuantidade(rs.getInt("quantidade"));
+				produto.setPreco(rs.getDouble("preco"));
+				produto.setOnLine(rs.getBoolean("onLine"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pStatement != null) {
+					pStatement.close();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e2) {
+				e2.printStackTrace();
+			}
+		}
+		return produto;
 	}
 
 	public ArrayList<Produto> BuscarProdutosPorDescricao(String descricao) {

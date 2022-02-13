@@ -41,8 +41,8 @@
 	display: flex;
 	flex-direction: column;
 	padding: 45px;
+	height: fit-content;
 	width: 800px;
-	height: 400px;
 	background-color: white;
 	margin: 0 auto;
 	margin-top: 4px;
@@ -67,7 +67,6 @@
 	align-items: center;
 	gap: 15px;
 	margin-bottom: 30px;
-	gap: 15px;
 }
 
 #bananaButton {
@@ -76,4 +75,43 @@
 	color: white;
 	font-weight: bold;
 	cursor: pointer;
+}
+
+#bananaItemButton {
+	background-color: #fc5a52;
+	border: none;
+	width: 70px;
+	color: white;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.bananaDivMother {
+	display: flex;
+	flex-direction: column;	
+}
+
+.bananaDivItem {
+	display: flex;
+	flex-direction: row;
+	width: 700px;
+	height: fit-content;
+	background-color: #F1AE2B;
+	justify-content: space-around; 
+	margin: 0 auto;
+	border-radius: 15px; 
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+	align-items: center;
+	align-self: center; 
+	color: white;
+}
+ 
+.bananaColumn {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	align-self: center;
+	justify-content: space-around;
+	height: fit-content;
+	align-items: center;  
 }

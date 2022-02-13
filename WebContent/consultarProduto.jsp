@@ -1,3 +1,5 @@
+<%@page import="banana.model.Produto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -18,17 +20,67 @@
 		</ul>
 	</nav>
 	<main class="bananaMain">
-		<form action="" method="post" class="bananaForm">
+	<div class="bananaForm">
+		<form action="buscarProdutos" method="post">
 			<div>
-				<label><strong>Busca pela Descrição:</strong></label><input type="text"
-					name="descricao">
+				<label><strong>Busca pela Descrição:</strong></label><input
+					type="text" name="descricao">
 			</div>
 			<br>
-			<div>
+			<div class="bananaColumn">
 				<input id="bananaButton" type="submit" name="salvar"
 					value="Consultar Produto">
 			</div>
+			<div class="bananaColumn">
+				<%
+				String mensagem = (String) request.getAttribute("mensagem");
+				if (mensagem != null)
+					out.print(mensagem);
+				%>
+			</div>
 		</form>
+		<%if (request.getAttribute("produtos") != null) {
+			List<?> produtos = (List<?>) request.getAttribute("produtos");
+			for (int contador = 0; contador <= (produtos.size() - 1); contador++) {
+				Produto produto = (Produto) produtos.get(contador);%>
+		<form action="modificarProduto" method="post">
+			<div class="bananaDivMother">
+				<div class="bananaDivItem">
+					<div class="bananaColumn">
+						<span style="font-weight: bold">Id</span> 
+						<span><%out.print(produto.getIdProduto());%></span> 
+						<input type="hidden" name="id" value="<%out.print(produto.getIdProduto());%>">
+					</div>
+					<div class="bananaColumn">
+						<span style="font-weight: bold">Descrição</span>
+						<span><%out.print(produto.getDescricao());%></span>
+					</div>
+					<div class="bananaColumn">
+						<span style="font-weight: bold">Quantidade</span>
+						<span><%out.print(produto.getQuantidade());%>
+						</span>
+					</div>
+					<div class="bananaColumn">
+						<span style="font-weight: bold">Preço</span> 
+						<span><%out.print(produto.getPreco());%></span>
+					</div>
+					<div class="bananaColumn">
+						<span style="font-weight: bold">On-Line</span> 
+						<span><%out.print(produto.isOnLine());%></span>
+					</div>
+					<div class="bananaColumn">
+						<input id="bananaItemButton" type="submit" name="alterar"
+							value="Alterar"> <input id="bananaItemButton"
+							type="submit" name="apagar" value="Apagar">
+					</div>
+				</div>
+			</div>
+		</form>
+		<%
+		}
+		}
+		%>
+	</div>
 	</main>
 </body>
 </html>

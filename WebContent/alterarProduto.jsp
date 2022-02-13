@@ -1,3 +1,4 @@
+<%@page import="banana.model.Produto"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -18,27 +19,39 @@
 		</ul>
 	</nav>
 	<main class="bananaMain">
-		<form action="cadastrarProduto" method="post" class="bananaForm">
+		<form action="alterarProduto" method="post" class="bananaForm">
+			<%
+			Produto produto = null;
+			if (request.getAttribute("produto") != null) {
+				produto = (Produto) request.getAttribute("produto");
+			}
+			%>
+			<input type="hidden" name="id" value="<%out.print(produto.getIdProduto());%>">
 			<div>
 				<label><strong>Descrição:</strong></label><input type="text"
-					name="descricao">
+					name="descricao" value="<%out.print(produto.getDescricao());%>">
 			</div>
 			<div>
 				<label><strong>Quantidade:</strong></label><input type="text"
-					name="quantidade">
+					name="quantidade" value="<%out.print(produto.getQuantidade());%>">
 			</div>
 			<div>
 				<label><strong>Preço:</strong></label><input type="text"
-					name="preco">
+					name="preco" value="<%out.print(produto.getPreco());%>">
 			</div>
 
 			<label><strong>Disponível On-Line:</strong></label><input
-				type="checkbox" name="online" value="true"> <br>
+				type="checkbox" name="online" value="true"
+				<%if (produto.isOnLine()) {
+	out.print("checked");
+}%>> <br>
 			<div>
-				<input id="bananaButton" type="submit" name="salvar"
-					value="Cadastrar Produto">
+				<input id="bananaButton" type="submit" name="alterar"
+					value="Alterar Produto">
 			</div>
-			
+			<div>
+				<input type="hidden" name="id">
+			</div>
 			<div>
 				<%
 				String mensagem = (String) request.getAttribute("mensagem");

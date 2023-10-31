@@ -1,0 +1,7 @@
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/dao/MySqlConnection.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/controller/modificarProdutoController.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/controller/cadastrarProdutoController.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/dao/ProdutoDao.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/model/Produto.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/controller/alterarProdutoController.java
+/home/kadu/Projects/youTube/BananaBacana/src/main/java/banana/controller/buscarProdutosController.java
